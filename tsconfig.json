@@ -1,0 +1,30 @@
+
+
+{
+  "compilerOptions": {
+    /* File Layout */
+    "rootDir": "./src",          // all TS source lives in src/
+    "outDir": "./dist",          // compiled JS goes to dist/
+    
+    /* Module System */
+    "target": "esnext",          // modern JS output
+    "module": "esnext",          // for browser ESM
+    "moduleResolution": "node",  // resolve like Node.js
+
+    /* TypeScript Strictness */
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+
+    /* Output Options */
+    "sourceMap": true,           // allow debugging with maps
+    "declaration": false,        // no .d.ts output for now
+    "declarationMap": false,
+
+    /* Module Detection */
+    "isolatedModules": true,
+    "moduleDetection": "force"
+  },
+  "include": ["src"],            // only compile files in src/
+  "exclude": ["node_modules", "dist"]
+}

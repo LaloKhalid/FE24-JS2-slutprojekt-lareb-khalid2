@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Scrum Board</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>My Scrum Board</h1>
+
+  <div id="authSection">
+    <h2>Login</h2>
+    <button id="loginBtn">Login with Google</button>
+    <button id="logoutBtn" style="display:none;">Logout</button>
+    <p id="userInfo"></p>
+  </div>
+  <hr>
+
+  <!-- Search Box -->
+  <input 
+    type="text" 
+    id="searchBox" 
+    placeholder="Search tasks..." 
+  />
+  <!-- ================== Members Section ================== -->
+  <section>
+    <h2>Team Members</h2>
+
+    <!-- Add Member Form -->
+    <form id="memberForm">
+      <input type="text" id="memberName" placeholder="Enter member name" required />
+      <select id="memberRole" required>
+        <option value="" disabled selected>Select role</option>
+        <option value="frontend">Frontend</option>
+        <option value="backend">Backend</option>
+        <option value="ux">UX</option>
+      </select>
+      <button type="submit">Add Member</button>
+    </form>
+
+    <!-- Members List -->
+    <div id="membersList">
+      <!-- Example: Alice — frontend -->
+    </div>
+  </section>
+  <!-- ===================================================== -->
+
+  <!-- Task Form -->
+  <form id="taskForm">
+    <input type="text" id="title" placeholder="Task Title" required />
+    <input type="text" id="description" placeholder="Task Description" required />
+
+    <input type="text" id="category" placeholder="Category" required />
+    <label for="assignedMember">Assign to:</label>
+    <select id="assignedMember">
+      <option value="">-- None --</option>
+    </select>
+
+    <select id="status" required>
+      <option value="new">New</option>
+      <option value="in-progress">In Progress</option>
+      <option value="done">Done</option>
+    </select>
+    <button type="submit">Add Task</button>
+  </form>
+
+  <h2>Tasks</h2>
+  <h2>Tasks</h2>
+
+<!-- Sorting Dropdown -->
+<label for="sortSelect">Sort tasks:</label>
+<select id="sortSelect">
+  <option value="time-desc">Newest first</option>
+  <option value="time-asc">Oldest first</option>
+  <option value="title-asc">Title A → Z</option>
+  <option value="title-desc">Title Z → A</option>
+</select>
+
+
+  <div class="board">
+    <div class="column" id="new-tasks">
+      <h3>New Tasks</h3>
+    </div>
+    <div class="column" id="in-progress">
+      <h3>In Progress</h3>
+    </div>
+    <div class="column" id="done">
+      <h3>Done</h3>
+    </div>
+  </div>
+
+  <!-- Firebase CDN loader script -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import {
+      getFirestore,
+      collection,
+      addDoc,
+      onSnapshot,
+      deleteDoc,
+      doc,
+      updateDoc,
+      getDocs
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+    import {
+      getAuth,
+      GoogleAuthProvider,
+      signInWithPopup,
+      signOut,
+      onAuthStateChanged
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCaMSuMtXh0vAgja4Y0IsR4Vtle1CqmGxc",
+      authDomain: "scrum-board-firebase.firebaseapp.com",
+      projectId: "scrum-board-firebase",
+      storageBucket: "scrum-board-firebase.firebasestorage.app",
+      messagingSenderId: "197952936908",
+      appId: "1:197952936908:web:33ea4decefab1f46465b69"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const auth = getAuth(app);
+    const provider = new GoogleAuthProvider();
+
+    // Expose firebase to window.fb for your app.ts to use
+    window.fb = {
+      db,
+      auth,
+      provider,
+      collection,
+      addDoc,
+      onSnapshot,
+      deleteDoc,
+      doc,
+      updateDoc,
+      getDocs,
+      signInWithPopup,
+      signOut,
+      onAuthStateChanged
+    };
+  </script>
+
+  <!-- Your compiled app script -->
+  <script type="module" src="./app.js"></script>
+</body>
+</html>

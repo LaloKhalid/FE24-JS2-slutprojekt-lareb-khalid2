@@ -1,0 +1,23 @@
+{
+  "name": "scrum-board-firebase",
+  "version": "1.0.0",
+  "description": "Scrum board project with Firebase, TypeScript, and OOP",
+  "main": "dist/frontend/app.js",
+  "scripts": {
+    "build": "tsc && npm run copy-static",
+    "copy-static": "copy src\\frontend\\index.html dist\\frontend\\index.html && copy src\\frontend\\style.css dist\\frontend\\style.css",
+    "start": "npx serve dist/frontend",
+    "watch": "tsc --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^17.2.1",
+    "firebase": "^12.1.0"
+  },
+  "devDependencies": {
+    "@types/dotenv": "^6.1.1",
+    "typescript": "^5.3.3"
+  }
+}
