@@ -14,7 +14,8 @@
   "license": "ISC",
   "dependencies": {
     "dotenv": "^17.2.1",
-    "firebase": "^12.1.0"
+    "firebase": "^12.1.0",
+    "react-icons": "^5.5.0"
   },
   "devDependencies": {
     "@types/dotenv": "^6.1.1",
